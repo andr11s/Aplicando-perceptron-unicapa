@@ -49,6 +49,7 @@ export function pageMain() {
                         <table class="table">
                         <thead>
                         <tr>
+                            <th scope="col">Iteraciones</th>
                             <th scope="col">YD1</th>
                             <th scope="col">YR1</th>
                         </tr>
@@ -62,10 +63,43 @@ export function pageMain() {
                     
                     </section>
             </div> 
-        </div>  
+        </div> 
+        <div class="row mt-1">
+            <div class="col-6">
+            <div class="card">
+            <div class="card-header">Datos obtenidos del archivo</div>
+            <div class="card-body"> 
+                <div class="table-responsive table-hover">
+                  <table class="table  table-bordered" id="entradas">
+                    <tbody id="tabledata">
+                      <tr>
+                        <th scope="col">X1</th>
+                        <th scope="col">X2</th>
+                        <th scope="col">YD1</th>
+                      </tr>
+
+
+                    </tbody>
+                  </table>
+                </div> 
+            </div>
+        </div>
+      </div> 
+        </div>
    </div>
    <hr/>
 `
     return $section
 }
 
+
+export function tableView(params) {
+    return `
+    <tr>
+        <td >${params.in[0]}</td>
+        <td >${params.in[1]}</td>
+        <td >${params.out}</td>
+    </tr>
+     `
+
+}

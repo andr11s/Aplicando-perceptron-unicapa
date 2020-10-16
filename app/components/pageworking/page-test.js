@@ -81,7 +81,7 @@ export function prdResultado(props) {
         <div class="row mb-3 mt-0">
                     <div class="col-12">
                         <div class="alert alert-success" role="alert">
-                            Respuesta del entranmiento :  ${props}
+                        Resultado de la simulacion :  ${props}
                         </div>
                     </div>
         </div>

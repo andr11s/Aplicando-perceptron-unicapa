@@ -1,7 +1,7 @@
-import { entrenar, entrenarRed } from './components/totrain.js'
+import { entrenar, entrenarRed, getDataInputs } from './components/totrain.js'
 import { PageIndex, Message } from './components/page-index.js'
 import { predecir, prdBody, prdResultado } from './components/pageworking/page-test.js'
-import { pageMain } from './components/pageworking/page-process.js';
+import { pageMain, tableView } from './components/pageworking/page-process.js';
 import { pageHistory, ResultadoOptimo, tableHistory } from "./components/pageworking/page-history.js";
 
 export function App() {
@@ -16,6 +16,11 @@ export function App() {
   let archivo;
   $files.addEventListener('change', even => {
     if ($root.appendChild(pageMain())) {
+      let $tabledata = d.getElementById("tabledata");
+      let resultado = getDataInputs();
+      for (let index = 0; index < resultado.length; index++) {
+        $tabledata.innerHTML += tableView(resultado[index]);
+      }
       archivo = even;
       d.getElementById("banner-header").remove('span');
       d.getElementById("view-notify").innerHTML = Message();
@@ -40,7 +45,7 @@ export function App() {
     }
 
     for (let index = 0; index < resultado.iteracion; index++) {
-      $pagetable.innerHTML += tableHistory({ yd1: resultado.entrada[index], yr1: resultado.resul[index] });
+      $pagetable.innerHTML += tableHistory({ it: index, yd1: resultado.entrada[index], yr1: resultado.resul[index] });
     }
 
     let $pageOptimo = d.getElementById("viewOptimo");

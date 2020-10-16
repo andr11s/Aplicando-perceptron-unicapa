@@ -68,7 +68,7 @@ let Perceptron = function () {
         let ErrorIteracion = [], resulHistory = [];
         let resultado;
         while (true) {
-
+            let obj = {};
             let error_patron = 0
             var contador_de_errores = 0;
             for (var n = 0; n < inputs.length; n++) {
@@ -79,7 +79,7 @@ let Perceptron = function () {
                 } else if (sum < 0) {
                     resultado = -1
                 }
-
+                obj[n] = resultado;
                 let error_lineal = inputs[n].out - resultado;
                 error_patron = error_patron + error_lineal;
 
@@ -90,10 +90,10 @@ let Perceptron = function () {
                 }
                 umbral = trunc(umbral + tasa_de_aprendizaje * error_lineal * 1, 2);
             }
-
+            resulHistory.push(obj)
             let ERMS = trunc(contador_de_errores / 6, 2);
             ErrorIteracion.push(ERMS)
-            resulHistory.push(resultado)
+
             if (ERMS <= 0.1) {
                 // console.log("pesos optimos ", w, "umbral optimo ", umbral);
                 return { entrada: inputs, pesosoptimo: w, error: ErrorIteracion, umbral: umbral, pesos: w, iteracion: it, resul: resulHistory };
@@ -144,7 +144,6 @@ let Perceptron = function () {
 };
 
 
-
 function getInpu(event) {
     let inp = [
         { in: [2, 0], out: 1 },
@@ -168,4 +167,14 @@ function getInpu(event) {
     }
 
     return inp;
+}
+
+export const getDataInputs = () => {
+    return [
+        { in: [2, 0], out: 1 },
+        { in: [0, 0], out: -1 },
+        { in: [2, 2], out: 1 },
+        { in: [0, 1], out: -1 },
+        { in: [1, 1], out: 1 },
+        { in: [1, 2], out: -1 }];
 }

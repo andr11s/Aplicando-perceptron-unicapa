@@ -6,11 +6,12 @@ export function pageHistory(props) {
 }
 
 export function tableHistory(params) {
-  let { yd1, yr1 } = params;
+  let { it, yd1, yr1 } = params;
   return `
       <tr>             
+      <td>${it}</td>
       <td>${yd1.out}</td>
-      <td>${yr1}</td>
+      <td>${yr1[0]} , ${yr1[1]} ,  ${yr1[2]} ,  ${yr1[3]} ,  ${yr1[4]} ,  ${yr1[5]}</td>
       </tr>
     `
 }
